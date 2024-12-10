@@ -1,0 +1,88 @@
+/*
+Genesis AMP styling.
+This currently loads only on AMP pages.
+*/
+
+html {
+	scroll-behavior: smooth;
+}
+
+.off-screen-content {
+	display: block;
+}
+
+/* Reveals the submenu upon parent hover.
+--------------------------------------------- */
+.genesis-nav-menu .menu-item .sub-menu {
+	display: block;
+	transform: scaleY(0);
+	transform-origin: top;
+	transition: transform 0.5s ease 0.2s;
+}
+
+.genesis-responsive-menu .genesis-nav-menu .menu-item:hover > .sub-menu {
+	display: block;
+	transform: scaleY(1);
+}
+
+/*
+ * :focus-within needs its own selector.
+ * If the event a browser does not recognize this pseudo-class, only this
+ * selector and its declarations are ignored. Isolating it ensures styles and
+ * animations work on :hover.
+ */
+
+/* Reveals the submenu when tabbing with a keyboard.
+--------------------------------------------- */
+.menu .menu-item:focus-within > .sub-menu {
+	transform: scaleY(1);
+	left: auto;
+	opacity: 1;
+}
+
+/* Shows .entry styling when tabbing with a keyboard.
+--------------------------------------------- */
+
+.after-content-featured .featuredpage .entry:focus-within .entry-header {
+	background-color: rgba(0, 0, 0, 0.45);
+}
+
+.after-content-featured .featuredpage .entry:focus-within .entry-title a:focus {
+	padding-top: 20%;
+}
+
+.after-content-featured .featuredpage .entry:focus-within img {
+	transform: scale(1.05);
+}
+
+
+/* Overrides for different breakpoint to follow non-AMP implementation. */
+@media only screen and (max-width: 959px) {
+
+	.header-menu .genesis-responsive-menu {
+		display: block;
+		position: absolute;
+		left: -9999px;
+		opacity: 0;
+		transform: scaleY(0);
+		transform-origin: top;
+		transition: transform 0.2s ease;
+	}
+
+	.genesis-responsive-menu.toggled-on {
+		opacity: 1;
+		position: relative;
+		left: auto;
+		transform: scaleY(1);
+	}
+
+	.genesis-responsive-menu.toggled-on .menu-item .sub-menu,
+	.genesis-responsive-menu.toggled-on .menu-item:hover > .sub-menu {
+		display: none;
+	}
+
+	.genesis-responsive-menu.toggled-on .sub-menu-toggle.toggled-on + .sub-menu {
+		display: block;
+		transform: scaleY(1);
+	}
+}
